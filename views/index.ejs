@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/chess.css' />
+</head>
+
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <div id="chessboard"></div>
+</body>
+
+</html>
+
+<script type="module">
+  import * as chess from '/javascripts/chess.js'
+  const LETTERS = "ABCDEFGH"
+
+
+
+  
+var board = new chess.Board()
+board.draw(board.pieces)
+board.update()
+
+// add event listeners for drag and drop after window has loaded
+window.onload = function(){
+  for(var piece of board.pieces){
+    document.getElementById(piece.id).addEventListener("dragstart", function(event){
+      event.dataTransfer.setData("piece_id", event.target.id)
+                    })
+  }
+  for(var row in board.fields){
+    for(var col in board.fields[row]){
+      document.getElementById(board.fields[row][col].id).addEventListener("drop", function(event){
+        event.preventDefault()
+        var piece_id = event.dataTransfer.getData("piece_id")
+        event.target.appendChild(document.getElementById(piece_id))
+        for(piece of board.pieces){
+          if(piece.id == piece_id){
+            var moved_piece = piece
+            var origin_coords = [piece.x, piece.y]
+          }
+        }
+        
+        var origin_id = chess.field_coords_to_id(origin_coords)
+        console.log(origin_id, origin_coords)
+        var destination_id = event.target.id
+        var destination_coords = chess.field_id_to_coords(destination_id)
+        console.log(destination_id, destination_coords)
+        moved_piece.check_if_move_valid(origin_coords, destination_coords)
+
+      })
+    }
+  }
+}
+</script>

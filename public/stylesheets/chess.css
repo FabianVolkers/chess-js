@@ -1,0 +1,31 @@
+
+#chessboard{
+    width: 800px;
+    height: 800px;
+}
+.board-row{
+    width: 800px;
+    height: 100px;
+}
+
+.board-field{
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+
+.black {
+    background-color: brown;
+    color: white;
+}
+
+.white {
+    background-color: #ffffcc;
+    color:  black;
+}
+
+.chess-piece{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 15px;
+}

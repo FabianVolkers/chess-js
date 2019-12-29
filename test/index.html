@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="1"><i draggable="true" ondragstart="drag(event)">K</i></div>
+        <div id="2"></div>
+    </body>
+</html>
+<style>
+    div{
+        width: 100px;
+        height: 100px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+    }
+</style>
+<script>
+function drag(ev){
+    console.log(ev)
+}
+</script>
